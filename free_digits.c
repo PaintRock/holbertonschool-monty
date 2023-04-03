@@ -2,7 +2,7 @@
 
 /**
 * free_structure - frees allocated memory
-* Return: Void
+* Return: void
 **/
 
 void free_structure(void)
