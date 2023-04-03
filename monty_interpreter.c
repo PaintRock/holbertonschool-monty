@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * interpreter_of_monty - processes monty instructions
+ * monty_interpreter - processes monty instructions
  * Return: 0 on success, EXIT_FAILURE on error
  */
 
-int interpreter_of_monty(void)
+int monty_interpreter(void)
 {
 	while (getline(&handle.buffer, &handle.rev_size, handle.rev_file) != EOF)
 	{

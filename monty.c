@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	interpreter_of_monty();
+	monty_interpreter();
 	free_structure();
 
 	return (0);

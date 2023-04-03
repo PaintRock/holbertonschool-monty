@@ -1,0 +1,13 @@
+#include "monty.h"
+
+/**
+* free_structure - frees allocated memory
+* Return: Void
+**/
+
+void free_structure(void)
+{
+	free(handle.buffer);
+	free_dlistint(handle.head);
+	fclose(handle.rev_file);
+}

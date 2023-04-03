@@ -1,9 +1,15 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define DELIMIT " $\n"
 
-#include  <stdio.h>
-#include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int _putchar(char c);
 
@@ -18,8 +24,9 @@ int _putchar(char c);
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
+	int n;
+
+	struct stack_s *prev;
         struct stack_s *next;
 } stack_t;
 
@@ -34,11 +41,48 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/**
+ * struct handler - helper functions
+ * @token2: pointer to token 1
+ * @buffer: pointer to string returned from getline
+ * @fp: pointer to file
+ * @head: pointer to beginning of list
+ * @line_number: line number of file
+ * @n: number of bytes read
+ * @token1: pointer to token 2
+ * @queueflag: flag for queue function
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ **/
 
+typedef struct handlers
+{
+	char *copy_rev_token;
+	char *buffer;
+	FILE *rev_file;
+	stack_t *head;
+	size_t number_lines;
+	size_t rev_size;
+	char *rev_token;
+} handler;
+extern handler handle;
+
+handler handle;
+int main(int argc, char **argv);
+int monty_interpreter(void);
+void rev_is_digit(void);
+int get_opcode(void);
 void op_add(stack_t **stack, unsigned int line_number);
-
-
+void op_push(stack_t **stack, unsigned int line_number);
+void op_pall(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_pint(stack_t **stack, unsigned int line_number);
+void op_nop(stack_t **stack, unsigned int line_number);
+void free_structure(void);
+void free_dlistint(stack_t *head);
 
 #endif

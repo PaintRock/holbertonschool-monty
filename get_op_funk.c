@@ -7,7 +7,7 @@
 
 int get_opcode(void)
 {
-	instruction_t opfunctions[] = {
+	instruction_t opfunk[] = {
 		{"push", op_push},
 		{"pall", op_pall},
 		{"add", op_add},
@@ -19,16 +19,16 @@ int get_opcode(void)
 
 	int i = 0;
 
-	for (; opfunctions[i].opcode != NULL; i++)
+	for (; opfunk[i].opcode != NULL; i++)
 	{
-		if (strcmp(opfunctions[i].opcode, handle.rev_token) == 0)
+		if (strcmp(opfunk[i].opcode, handle.rev_token) == 0)
 		{
-			opfunctions[i].f(&handle.head, handle.number_lines);
+			opfunk[i].f(&handle.head, handle.number_lines);
 			break;
 		}
 	}
 
-	if (!opfunctions[i].opcode)
+	if (!opfunk[i].opcode)
 	{
 		fprintf(stderr, "L%ld: unknown instruction %s\n",
 		handle.number_lines, handle.rev_token);
